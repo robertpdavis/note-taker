@@ -1,8 +1,20 @@
 [
     {
         "created": 1616087173408,
-        "id": "Test Id",
+        "id": "1",
         "title": "Test Title",
         "text": "Test text"
+    },
+    {
+        "created": 1651670254482,
+        "id": "fe254a4c-72c8-4ec6-a96b-4c22bdaac136",
+        "title": "My First Note",
+        "text": "And this is my firs note text!"
+    },
+    {
+        "created": 1651670537846,
+        "id": "890ae542-33da-4c3f-915b-9ab8559c88e4",
+        "title": "My Next Note",
+        "text": "Note text next"
     }
 ]

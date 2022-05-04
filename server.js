@@ -35,14 +35,14 @@ app.get('/api/notes', (req, res) =>
 app.post('/api/notes', (req, res) => {
     // Destructuring assignment for the items in req.body
     const { title, text } = req.body;
-    const noteId = uuidv4();
+    const id = uuidv4();
 
     // If all the required properties are present
     if (title && text) {
         // Variable for the object we will save
         const newNote = {
             created: Date.now(),
-            noteId,
+            id,
             title,
             text,
         };
