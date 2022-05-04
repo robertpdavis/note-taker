@@ -1,6 +1,8 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "created": 1616087173408,
+        "id": "Test Id",
+        "title": "Test Title",
+        "text": "Test text"
     }
 ]
