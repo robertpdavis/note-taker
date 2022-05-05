@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const { clog } = require('./middleware/clog');
-const { readAndAppend, readFromFile } = require('./helpers/fsUtils');
+const { readAndAppend, readFromFile, writeToFile } = require('./helpers/fsUtils');
 
 //Use env. port (for remote server) or if not available 3001.
 const PORT = process.env.PORT || 3001;
@@ -57,6 +57,36 @@ app.post('/api/notes', (req, res) => {
         res.json(response);
     } else {
         res.json('Error in posting note');
+    }
+});
+
+// DELET Route for deleting a note
+app.delete('/api/notes/:id', (req, res) => {
+
+    //Get the id parameter
+    const id = req.params.id;
+
+    // If a valid id is passed
+    if (id && id != "" && id != undefined) {
+
+        const dir = path.join(__dirname, '/db/db.json');
+
+        //Get the db.json file for editing
+        readFromFile(dir).then((data) => {
+
+            //Parse it to get an array of note objects
+            const dbFile = JSON.parse(data);
+
+            //Loop through array and find note with matching id
+            dbFile.forEach((item, index, array) => {
+                if (item.id === id) {
+                    //Remove the item from the array
+                    array.splice(index, 1);
+                }
+            })
+
+            writeToFile(dir, dbFile);
+        });
     }
 });
 
