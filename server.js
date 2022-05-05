@@ -86,6 +86,13 @@ app.delete('/api/notes/:id', (req, res) => {
             })
 
             writeToFile(dir, dbFile);
+
+            const response = {
+                status: 'success',
+                body: id,
+            };
+
+            res.json(response);
         });
     }
 });
