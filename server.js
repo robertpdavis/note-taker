@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 //Serve all files in public directory
 app.use(express.static('public'));
 
-//As only a few routes related to notes category, no seperated route handlers required
-// GET Route for notes html page
+//As only a few routes related to notes category, no seperated route handlers created
+// GET route for notes html page
 app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
@@ -35,18 +35,19 @@ app.get('/api/notes', (req, res) =>
 app.post('/api/notes', (req, res) => {
     // Destructuring assignment for the items in req.body
     const { title, text } = req.body;
+    //Get a unque id for the note
     const id = uuidv4();
 
     // If all the required properties are present
     if (title && text) {
-        // Variable for the object we will save
+        // New note object for saving
         const newNote = {
             created: Date.now(),
             id,
             title,
             text,
         };
-
+        //Add the note to the db.json file
         readAndAppend(newNote, './db/db.json');
 
         const response = {
@@ -63,7 +64,7 @@ app.post('/api/notes', (req, res) => {
 // DELET Route for deleting a note
 app.delete('/api/notes/:id', (req, res) => {
 
-    //Get the id parameter
+    //Get the id parameter for the note to be deleted
     const id = req.params.id;
 
     // If a valid id is passed
@@ -85,8 +86,10 @@ app.delete('/api/notes/:id', (req, res) => {
                 }
             })
 
+            //Save updated file
             writeToFile(dir, dbFile);
 
+            //Send a response back to complete the transaction
             const response = {
                 status: 'success',
                 body: id,
@@ -102,6 +105,7 @@ app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, 'public/index.html'))
 );
 
+//Start server
 app.listen(PORT, () =>
     console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
