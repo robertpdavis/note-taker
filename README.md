@@ -5,7 +5,7 @@
 ## Description
 Full stack client / server application that allows a user to create notes and save them. It uses node.js with express.js running as the server with html/css/js front end. Notes are saved in a json file.
 
-Site is currently hosted on heroku at: https://still-savannah-26575.herokuapp.com/
+Site is currently hosted on AWS at: https://notetaker.robpdavis.com.au/
 
 ## Table of Contents
 - [Installation](#installation)

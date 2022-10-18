@@ -5,7 +5,7 @@ const { clog } = require('./middleware/clog');
 const { readAndAppend, readFromFile, writeToFile } = require('./helpers/fsUtils');
 
 //Use env. port (for remote server) or if not available 3001.
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 
 const app = express();
 
